@@ -15,6 +15,7 @@ connectDB();
 
 //include route files
 const auth = require('./routes/auth');
+const client = require('./routes/client');
 
 const app = express();
 //advanced analytics
@@ -33,6 +34,7 @@ if (process.env.NODE_ENV == 'development') {
 
 //routes
 app.use('/api/v1/auth', auth);
+app.use('/api/v1/clients', client)
 
 app.use(errorHandler);
 app.use(moesifMiddleware);
