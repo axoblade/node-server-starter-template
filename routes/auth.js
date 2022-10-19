@@ -1,6 +1,6 @@
 const express = require('express');
 
-const { protect } = require('../middleware/auth');
+const { protect,authorize } = require('../middleware/auth');
 //include the controller
 const {
     createUser,
@@ -26,7 +26,7 @@ router.route('/login')
 
 router.route('/me')
     .get(protect, getMe);
-router.route('/details/:Id').get(getUserDetails);
+router.route('/details/:Id').get(protect, authorize("admin"),getUserDetails);
 
 router.route('/system-all-users').get(advancedFilter(users) ,getAllSystemUsers);
 
